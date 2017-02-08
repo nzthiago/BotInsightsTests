@@ -1,0 +1,36 @@
+{
+  "name": "botbuilder-sample-appinsights",
+  "version": "1.0.0",
+  "description": "Bot Builder Sample - Application Insights",
+  "scripts": {
+    "start": "node app.js",
+    "test": "./node_modules/.bin/mocha --reporter mocha-junit-reporter"
+  },
+  "author": "Microsoft Corp.",
+  "license": "MIT",
+  "keywords": [
+    "botbuilder",
+    "bots",
+    "chatbots",
+    "botbuilder-samples"
+  ],
+  "bugs": {
+    "url": "https://github.com/Microsoft/BotBuilder-Samples/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Microsoft/BotBuilder-Samples.git"
+  },
+  "dependencies": {
+    "applicationinsights": "^0.17.1",
+    "botbuilder": "^3.5.1",
+    "dotenv-extended": "^1.0.4",
+    "restify": "^4.3.0"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "mocha": "^3.2.0",
+    "mocha-junit-reporter": "^1.13.0",
+    "nock": "^9.0.2"
+  }
+}

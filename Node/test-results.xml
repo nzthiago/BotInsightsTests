@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="1.074" tests="3" failures="0">
+  <testsuite name="Root Suite" timestamp="2017-02-08T17:06:43" tests="0" failures="0" time="0">
+  </testsuite>
+  <testsuite name="Bot Tests" timestamp="2017-02-08T17:06:43" tests="3" file="/Users/thiago/Desktop/code/TechReady24/Node/core-AppInsights/test/index.js" failures="0" time="1.074">
+    <testcase name="Bot Tests current city" time="0.542" classname="current city">
+    </testcase>
+    <testcase name="Bot Tests change city" time="0.52" classname="change city">
+    </testcase>
+    <testcase name="Bot Tests greeting" time="0.012" classname="greeting">
+    </testcase>
+  </testsuite>
+</testsuites>

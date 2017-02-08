@@ -1,0 +1,242 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertrules_Failure_Anomalies___tr24statebotcsharp_name": {
+            "defaultValue": "Failure Anomalies - tr24statebotcsharp",
+            "type": "string"
+        },
+        "components_StateBotNodeInsights_name": {
+            "defaultValue": "StateBotNodeInsights",
+            "type": "string"
+        },
+        "components_tr24statebotcsharp_name": {
+            "defaultValue": "tr24statebotcsharp",
+            "type": "string"
+        },
+        "serverfarms_TR24ProdServicePlan_name": {
+            "defaultValue": "TR24ProdServicePlan",
+            "type": "string"
+        },
+        "sites_tr24statebotnode_name": {
+            "defaultValue": "tr24statebotnode",
+            "type": "string"
+        },
+        "sites_tr24statebotcsharp_name": {
+            "defaultValue": "tr24statebotcsharp",
+            "type": "string"
+        },
+        "tr24statebotnode_MicrosoftAppId": {
+            "type": "string"
+        },
+        "tr24statebotnode_MicrosoftAppPassword": {
+            "type": "string"
+        },
+        "tr24statebotcsharp_MicrosoftAppId": {
+            "type": "string"
+        },
+        "tr24statebotcsharp_MicrosoftAppPassword": {
+            "type": "string"
+        },
+        "tr24statebotcsharp_BotId": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/2bcd95b1-1835-4d41-92ac-60c9c434ffd0/resourceGroups/TechRead24/providers/microsoft.insights/alertrules/Failure Anomalies - tr24statebotcsharp'.",
+            "type": "microsoft.insights/alertrules",
+            "name": "[parameters('alertrules_Failure_Anomalies___tr24statebotcsharp_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "East US",
+            "tags": {
+                "hidden-link:/subscriptions/2bcd95b1-1835-4d41-92ac-60c9c434ffd0/resourcegroups/TechRead24/providers/microsoft.insights/components/tr24statebotcsharp": "Resource"
+            },
+            "properties": {
+                "name": "[parameters('alertrules_Failure_Anomalies___tr24statebotcsharp_name')]",
+                "description": "",
+                "isEnabled": true,
+                "condition": {
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.ThresholdRuleCondition",
+                    "dataSource": {
+                        "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleMetricDataSource",
+                        "resourceUri": "[resourceId('microsoft.insights/components', parameters('components_tr24statebotcsharp_name'))]",
+                        "metricName": "advanced::A3108E3D-5E26-44CF-B232-783F5E20EF10::ewAiAEgAeQBwAGUAcgBpAG8AbgBBAHAAcABsAGkAYwBhAHQAaQBvAG4AUwBpAGQAIgA6AG4AdQBsAGwALAAiAEgAeQBwAGUAcgBpAG8AbgBTAHUAYgBqAGUAYwB0AFMAaQBkACIAOgBuAHUAbABsACwAIgBIAHkAcABlAHIAaQBvAG4ATwBiAHMAZQByAHYAZQByAFMAaQBkACIAOgBuAHUAbABsACwAIgBDAHUAcwB0AG8AbQBlAHIAQQBjAGMAbwB1AG4AdABJAGQAIgA6ACIAMAAwADAAMAAwADAAMAAwAC0AMAAwADAAMAAtADAAMAAwADAALQAwADAAMAAwAC0AMAAwADAAMAAwADAAMAAwADAAMAAwADAAIgAsACIAQQBwAHAAbABpAGMAYQB0AGkAbwBuAE4AYQBtAGUAIgA6AG4AdQBsAGwALAAiAEEAcABwAGwAaQBjAGEAdABpAG8AbgBJAGQAIgA6AG4AdQBsAGwALAAiAFAAcgBvAGYAaQBsAGUASQBkACIAOgAwACwAIgBXAGkAbgBkAG8AdwBTAGkAegBlAEkAbgBNAGkAbgB1AHQAZQBzACIAOgA2ADAALAAiAE0AZQB0AHIAaQBjAE4AYQBtAGUAIgA6ACIAIgAsACIAVABoAHIAZQBzAGgAbwBsAGQAIgA6ADIALgAwACwAIgBBAGwAZQByAHQAVABlAG0AcABsAGEAdABlAEkAZAAiADoAIgAiACwAIgBSAHUAbABlAEkAZAAiADoAIgAiACwAIgBSAHUAbABlAE4AYQBtAGUAIgA6ACIAIgAsACIAUgB1AGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AIgA6ACIAIgAsACIAUgBlAHMAbwB1AHIAYwBlAEkAZAAiADoAbgB1AGwAbAAsACIAUwB1AGIAcwBjAHIAaQBwAHQAaQBvAG4ASQBkACIAOgBuAHUAbABsACwAIgBBAGcAZwByAGUAZwBhAHQAZQBGAHUAbgBjAHQAaQBvAG4AIgA6ACIAIgAsACIAQwBvAG0AcABhAHIAaQBzAG8AbgBPAHAAZQByAGEAdABvAHIAIgA6ACIAewBcACIAQgBhAHMAZQBsAGkAbgBlAFQAaQBtAGUAcwBwAGEAbgBcACIAOgBcACIAMAAwADoANAAwADoAMAAwAFwAIgAsAFwAIgBJAG4AcwBpAGcAaAB0AHMAUwBlAHIAdgBpAGMAZQBMAGEAZwBcACIAOgBcACIAMAAwADoAMAAwADoAMAAwAFwAIgAsAFwAIgBCAHUAZgBmAGUAcgBUAGkAbQBlAFwAIgA6AFwAIgAwADAAOgAwADEAOgAwADAAXAAiACwAXAAiAEIAbABvAGIAUwB0AG8AcgBhAGcAZQBMAG8AZwBnAGkAbgBnAEUAbgBhAGIAbABlAGQAXAAiADoAZgBhAGwAcwBlACwAXAAiAFUAcwBlAHIAUwB1AHAAcAByAGUAcwBzAGkAbwBuAHMAXAAiADoAbgB1AGwAbAAsAFwAIgBQAHIAbwBmAGkAbABlAEkAZABcACIAOgAwACwAXAAiAEUAbQBhAGkAbABUAHkAcABlAFwAIgA6ADAALABcACIAUgBkAGQARgBhAGkAbAB1AHIAZQBzAFMAcABpAGsAZQBUAGgAcgBlAHMAaABvAGwAZABcACIAOgAzAC4AMAAsAFwAIgBSAGEAdwBQAHIAbwBhAGMAdABpAHYAZQBSAHUAbABlAEMAbwBuAGYAaQBnAFwAIgA6AG4AdQBsAGwAfQAiACwAIgBFAG4AYQBiAGwAZQBTAGUAbgBkAEUAbQBhAGkAbABUAG8AQwB1AHMAdABvAG0AIgA6AGYAYQBsAHMAZQAsACIAQwB1AHMAdABvAG0ARQBtAGEAaQBsAHMARQBuAGMAbwBkAGUAZAAiADoAIgAiACwAIgBFAG4AYQBiAGwAZQBTAGUAbgBkAEUAbQBhAGkAbABUAG8ATwB3AG4AZQByAHMAIgA6AGYAYQBsAHMAZQB9AA=="
+                    },
+                    "threshold": 2,
+                    "windowSize": "PT1H"
+                },
+                "action": {
+                    "odata.type": "Microsoft.Azure.Management.Insights.Models.RuleEmailAction",
+                    "sendToServiceOwners": true,
+                    "customEmails": []
+                }
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('microsoft.insights/components', parameters('components_tr24statebotcsharp_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2bcd95b1-1835-4d41-92ac-60c9c434ffd0/resourceGroups/TechRead24/providers/microsoft.insights/components/StateBotNodeInsights'.",
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "name": "[parameters('components_StateBotNodeInsights_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "eastus",
+            "tags": {},
+            "properties": {
+                "ApplicationId": "[parameters('components_StateBotNodeInsights_name')]"
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2bcd95b1-1835-4d41-92ac-60c9c434ffd0/resourceGroups/TechRead24/providers/microsoft.insights/components/tr24statebotcsharp'.",
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "name": "[parameters('components_tr24statebotcsharp_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "eastus",
+            "tags": {
+                "hidden-link:/subscriptions/2bcd95b1-1835-4d41-92ac-60c9c434ffd0/resourceGroups/TechRead24/providers/Microsoft.Web/sites/tr24statebotcsharp": "Resource"
+            },
+            "properties": {
+                "ApplicationId": "[parameters('components_tr24statebotcsharp_name')]"
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2bcd95b1-1835-4d41-92ac-60c9c434ffd0/resourceGroups/TechRead24/providers/Microsoft.Web/serverfarms/TR24ProdServicePlan'.",
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "S1",
+                "tier": "Standard",
+                "size": "S1",
+                "family": "S",
+                "capacity": 1
+            },
+            "kind": "app",
+            "name": "[parameters('serverfarms_TR24ProdServicePlan_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West US",
+            "properties": {
+                "name": "[parameters('serverfarms_TR24ProdServicePlan_name')]",
+                "numberOfWorkers": 1
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2bcd95b1-1835-4d41-92ac-60c9c434ffd0/resourceGroups/TechRead24/providers/Microsoft.Web/sites/tr24statebotnode'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "app",
+            "name": "[parameters('sites_tr24statebotnode_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West US",
+            "tags": {
+                "hidden-related:/subscriptions/2bcd95b1-1835-4d41-92ac-60c9c434ffd0/resourcegroups/TechRead24/providers/Microsoft.Web/serverfarms/TR24ProdServicePlan": "empty"
+            },
+            "properties": {
+                "name": "[parameters('sites_tr24statebotnode_name')]",
+                "hostNames": [
+                    "tr24statebotnode.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "tr24statebotnode.azurewebsites.net",
+                    "tr24statebotnode.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_tr24statebotnode_name'),'.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_tr24statebotnode_name'),'.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_TR24ProdServicePlan_name'))]"
+            },
+            "resources": [
+                {
+                    "name": "appsettings",
+                    "type": "config",
+                    "apiVersion": "2015-08-01",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', parameters('sites_tr24statebotnode_name'))]"
+                    ],
+                    "properties": {
+                        "MICROSOFT_APP_ID": "[parameters('tr24statebotnode_MicrosoftAppId')]",
+                        "MICROSOFT_APP_PASSWORD": "[parameters('tr24statebotnode_MicrosoftAppPassword')]",
+                        "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(concat('Microsoft.Insights/components/', parameters('components_StateBotNodeInsights_name'))).InstrumentationKey]"
+                    }
+                }
+            ],
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_TR24ProdServicePlan_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/2bcd95b1-1835-4d41-92ac-60c9c434ffd0/resourceGroups/TechRead24/providers/Microsoft.Web/sites/tr24statebotcsharp'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "app",
+            "name": "[parameters('sites_tr24statebotcsharp_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West US",
+            "tags": {
+                "hidden-related:/subscriptions/2bcd95b1-1835-4d41-92ac-60c9c434ffd0/resourcegroups/TechRead24/providers/Microsoft.Web/serverfarms/TR24ProdServicePlan": "empty"
+            },
+            "properties": {
+                "name": "[parameters('sites_tr24statebotcsharp_name')]",
+                "hostNames": [
+                    "tr24statebotcsharp.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "tr24statebotcsharp.azurewebsites.net",
+                    "tr24statebotcsharp.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_tr24statebotcsharp_name'),'.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_tr24statebotcsharp_name'),'.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    }
+                ],
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_TR24ProdServicePlan_name'))]"
+            },
+            "resources": [
+                {
+                    "name": "appsettings",
+                    "type": "config",
+                    "apiVersion": "2015-08-01",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', parameters('sites_tr24statebotcsharp_name'))]"
+                    ],
+                    "properties": {
+                        "MicrosoftAppId": "[parameters('tr24statebotcsharp_MicrosoftAppId')]",
+                        "MicrosoftAppPassword": "[parameters('tr24statebotcsharp_MicrosoftAppPassword')]",
+                        "BotId": "[parameters('tr24statebotcsharp_BotId')]",
+                        "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(concat('Microsoft.Insights/components/', parameters('components_tr24statebotcsharp_name'))).InstrumentationKey]"
+                    }
+                }
+            ],
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_TR24ProdServicePlan_name'))]"
+            ]
+        }
+    ]
+}

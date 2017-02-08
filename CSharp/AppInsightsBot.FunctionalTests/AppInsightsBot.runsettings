@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <TestRunParameters>
+    <!-- update these with your values for local dev testing. In VSTS these will come from Env Variables -->
+    <Parameter name="MicrosoftAppId" value="__YOUR-MICROSOFT-APP-ID__" />
+    <Parameter name="DirectLineToken" value="__YOUR-DIRECTLINE-TOKEN__" />
+    <Parameter name="BotId" value="__YOUR-BOT-ID__" />
+  </TestRunParameters>
+</RunSettings>
