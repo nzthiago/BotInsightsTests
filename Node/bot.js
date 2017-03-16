@@ -71,7 +71,7 @@ function create(connector) {
             var userCity = session.privateConversationData[CityKey];
             if (userCity) {
                 session.send(
-                    '%s, you have overridden the city. Your searches are for things in %s. The default conversation city is %s.',
+                    '%s, you have overridden the city, all good. Your searches are for things in %s. The default conversation city is %s.',
                     userName, userCity, defaultCity);
                 return;
             } else {

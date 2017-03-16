@@ -1,0 +1,193 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "serverfarms_ServicePlan_name": {
+            "defaultValue": "StateBotServicePlan",
+            "type": "string"
+        },
+        "sites_statebotnode_name": {
+            "defaultValue": "statebotnode",
+            "type": "string"
+        },
+        "sites_statebotcsharp_name": {
+            "defaultValue": "statebotcsharp",
+            "type": "string"
+        },
+        "statebotnode_MicrosoftAppId": {
+            "type": "string"
+        },
+        "statebotnode_MicrosoftAppPassword": {
+            "type": "string"
+        },
+        "statebotcsharp_MicrosoftAppId": {
+            "type": "string"
+        },
+        "statebotcsharp_MicrosoftAppPassword": {
+            "type": "string"
+        },
+        "statebotcsharp_BotId": {
+            "type": "string"
+        },
+        "statebot_region": {
+            "type": "string",
+            "defaultValue": "West US"
+        },
+        "appServiceTier": {
+            "type": "string",
+            "allowedValues": [
+                "Standard",
+                "Premium"
+            ],
+            "defaultValue": "Standard",
+            "metadata": {
+                "description": "Choose either Standard or Premium Azure Web Apps pricing tiers. It defaults to Standard"
+            }
+        },
+        "appServiceWorkerSize": {
+            "type": "string",
+            "allowedValues": [
+                "0",
+                "1",
+                "2"
+            ],
+            "defaultValue": "0",
+            "metadata": {
+                "description": "Worker Size( 0=Small, 1=Medium, 2=Large )"
+            }
+        },
+        "skuName": {
+            "type": "string",
+            "defaultValue": "F1",
+            "allowedValues": [
+                "F1",
+                "D1",
+                "B1",
+                "B2",
+                "B3",
+                "S1",
+                "S2",
+                "S3",
+                "P1",
+                "P2",
+                "P3",
+                "P4"
+            ],
+            "metadata": {
+            "description": "Describes plan's pricing tier and instance size. Check details at https://azure.microsoft.com/en-us/pricing/details/app-service/"
+         }
+      }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "sku": {
+                "name": "[parameters('skuName')]",
+                "tier": "[parameters('appServiceTier')]",
+                "size": "[parameters('appServiceWorkerSize')]",
+                "capacity": 1
+            },
+            "kind": "app",
+            "name": "[parameters('serverfarms_ServicePlan_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "[parameters('statebot_region')]",
+            "properties": {
+                "name": "[parameters('serverfarms_ServicePlan_name')]",
+                "numberOfWorkers": 1
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "kind": "app",
+            "name": "[parameters('sites_statebotcsharp_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "[parameters('statebot_region')]",
+            "properties": {
+                "name": "[parameters('sites_statebotcsharp_name')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ServicePlan_name'))]"
+            },
+            "resources": [
+                {
+                    "name": "appsettings",
+                    "type": "config",
+                    "apiVersion": "2015-08-01",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', parameters('sites_statebotcsharp_name'))]"
+                    ],
+                    "properties": {
+                        "MicrosoftAppId": "[parameters('statebotcsharp_MicrosoftAppId')]",
+                        "MicrosoftAppPassword": "[parameters('statebotcsharp_MicrosoftAppPassword')]",
+                        "BotId": "[parameters('statebotcsharp_BotId')]",
+                        "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(concat('Microsoft.Insights/components/', parameters('sites_statebotcsharp_name'))).InstrumentationKey]"
+                    }
+                }
+            ],
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ServicePlan_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "kind": "app",
+            "name": "[parameters('sites_statebotnode_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "[parameters('statebot_region')]",
+            "properties": {
+                "name": "[parameters('sites_statebotnode_name')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ServicePlan_name'))]"
+            },
+            "resources": [
+                {
+                    "name": "appsettings",
+                    "type": "config",
+                    "apiVersion": "2015-08-01",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', parameters('sites_statebotnode_name'))]"
+                    ],
+                    "properties": {
+                        "WEBSITE_NODE_DEFAULT_VERSION": "6.9.1",
+                        "MICROSOFT_APP_ID": "[parameters('statebotnode_MicrosoftAppId')]",
+                        "MICROSOFT_APP_PASSWORD": "[parameters('statebotnode_MicrosoftAppPassword')]",
+                        "APPINSIGHTS_INSTRUMENTATIONKEY": "[reference(concat('Microsoft.Insights/components/', parameters('sites_statebotnode_name'))).InstrumentationKey]"
+                    }
+                }
+            ],
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarms_ServicePlan_name'))]"
+            ]
+        },
+        {
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "name": "[parameters('sites_statebotcsharp_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "East US",
+            "tags": {
+                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('sites_statebotcsharp_name'))]": "Resource"
+            },
+            "properties": {
+                "ApplicationId": "[parameters('sites_statebotcsharp_name')]"
+            },
+            "resources": [],
+            "dependsOn": []
+        },      
+        {
+            "type": "microsoft.insights/components",
+            "kind": "web",
+            "name": "[parameters('sites_statebotnode_name')]",
+            "apiVersion": "2014-04-01",
+            "location": "East US",
+            "tags": {
+                "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('sites_statebotnode_name'))]": "Resource"
+            },
+            "properties": {
+                "ApplicationId": "[parameters('sites_statebotnode_name')]"
+            },
+            "resources": [],
+            "dependsOn": []
+        }
+    ]
+}

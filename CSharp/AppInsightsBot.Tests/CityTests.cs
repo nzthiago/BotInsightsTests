@@ -22,7 +22,7 @@ namespace AppInsightsBot.Tests
 
             var toBot = DialogTestBase.MakeTestMessage();
             toBot.From.Id = Guid.NewGuid().ToString();
-            toBot.Text = "hi";
+            toBot.Text = "hi!";
             Func<IDialog<object>> MakeRoot = () => stateDialog;
 
             using (new FiberTestBase.ResolveMoqAssembly(stateDialog))

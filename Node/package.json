@@ -4,7 +4,7 @@
   "description": "Bot Builder Sample - Application Insights",
   "scripts": {
     "start": "node app.js",
-    "test": "./node_modules/.bin/mocha --reporter mocha-junit-reporter"
+    "test": "istanbul cover --report cobertura --report lcov node_modules/mocha/bin/_mocha -- -R mocha-junit-reporter"
   },
   "author": "Microsoft Corp.",
   "license": "MIT",
@@ -31,6 +31,7 @@
     "assert": "^1.4.1",
     "mocha": "^3.2.0",
     "mocha-junit-reporter": "^1.13.0",
-    "nock": "^9.0.2"
+    "nock": "^9.0.2",
+    "istanbul": "^0.4.5"
   }
 }

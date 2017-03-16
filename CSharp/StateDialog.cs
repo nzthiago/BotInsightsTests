@@ -11,7 +11,7 @@
     [Serializable]
     public class StateDialog : IDialog<object>
     {
-        private const string HelpMessage = "\n * If you want to know which city I'm using for my searches type 'current city'. \n * Want to change the current city? Type 'change city to cityName'. \n * Want to change it just for your searches? Type 'change my city to cityName'";
+        private const string HelpMessage = "\n * If you want to know which city I'm using for my searches type 'current city' \n * Want to change the current city? Type 'change city to cityName'. \n * Want to change it just for your searches? Type 'change my city to cityName'";
         private bool userWelcomed;
 
         public async Task StartAsync(IDialogContext context)

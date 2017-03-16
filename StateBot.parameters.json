@@ -1,0 +1,27 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "statebotnode_MicrosoftAppId": {
+            "value": null
+        },
+        "statebotnode_MicrosoftAppPassword": {
+            "value": null
+        },
+        "statebotcsharp_MicrosoftAppId": {
+            "value": null
+        },
+        "statebotcsharp_MicrosoftAppPassword": {
+            "value": null
+        },
+        "statebotcsharp_BotId": {
+            "value": null
+        },
+        "sites_statebotnode_name": {
+            "value": null
+        },
+        "sites_statebotcsharp_name": {
+            "value": null
+        }
+    }
+}
